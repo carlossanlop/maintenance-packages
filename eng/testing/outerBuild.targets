@@ -1,0 +1,9 @@
+<Project>
+
+  <Target Name="VSTest" DependsOnTargets="GetProjectWithBestTargetFrameworks">
+    <MSBuild Projects="@(InnerBuildProjectsWithBestTargetFramework)"
+             Targets="VSTest">
+    </MSBuild>
+  </Target>
+
+</Project>

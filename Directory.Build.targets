@@ -21,6 +21,8 @@
 
   <!-- The VSTest target is not bound by any conditions, needs to be overriden when we want to skip tests. -->
   <Import Project="$(RepositoryEngineeringDir)testing\skiptests.targets" Condition="'$(IsTestProject)' == 'true' and '$(SkipTests)' == 'true'" />
+  <!-- The VSTest needs to be conditionally overriden for test assemblies that use platform specific tfms. -->
+  <Import Project="$(RepositoryEngineeringDir)testing\outerBuild.targets" Condition="'$(IsTestProject)' == 'true' and '$(SkipTests)' != 'true' and '$(IsCrossTargetingBuild)' == 'true'" />
 
   <ItemGroup Condition="'$(IsTestProject)' == 'true'">
     <Compile Include="$(CommonPath)tests\TestUtilities\System\AssertExtensions.cs" Link="Common\System\AssertExtensions.cs" />
